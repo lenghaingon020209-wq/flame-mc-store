@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>FLAME-CLUB Store</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#080808;
+    color:white;
+}
+
+
+/* HEADER */
+
+header{
+    height:100vh;
+    background:
+    linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.9)),
+    url("https://wallpapercave.com/wp/wp2757874.jpg");
+    background-size:cover;
+    background-position:center;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+
+.logo{
+    font-size:70px;
+    color:#ff4500;
+    animation:fire 1s infinite alternate;
+}
+
+
+@keyframes fire{
+    from{
+        text-shadow:0 0 10px red;
+    }
+
+    to{
+        text-shadow:0 0 40px orange;
+    }
+}
+
+
+button{
+    background:#ff4500;
+    color:white;
+    border:none;
+    padding:12px 25px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+
+button:hover{
+    background:#ff8800;
+}
+
+
+
+/* SHOP */
+
+section{
+    padding:50px 8%;
+}
+
+
+.title{
+    text-align:center;
+    color:#ff5500;
+    font-size:40px;
+    margin-bottom:30px;
+}
+
+
+.shop{
+
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:25px;
+
+}
+
+
+.card{
+
+    background:#151515;
+    width:240px;
+    padding:25px;
+    border-radius:15px;
+    text-align:center;
+    border:2px solid #ff4500;
+
+}
+
+
+.card h2{
+    color:#ff7700;
+}
+
+
+.price{
+
+    color:#00ff55;
+    font-size:28px;
+    margin:15px;
+
+}
+
+
+/* CART */
+
+.cart{
+
+position:fixed;
+top:20px;
+right:20px;
+background:#ff4500;
+padding:15px;
+border-radius:10px;
+z-index:5;
+
+}
+
+
+
+
+/* POPUP */
+
+
+.popup{
+
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.8);
+
+justify-content:center;
+align-items:center;
+
+}
+
+
+.popup-box{
+
+background:#111;
+padding:35px;
+width:350px;
+text-align:center;
+border-radius:15px;
+border:2px solid orange;
+
+}
+
+
+.popup-box h2{
+
+color:#ff6600;
+
+}
+
+
+.buy{
+
+background:green;
+
+}
+
+
+.close{
+
+background:red;
+
+}
+
+
+footer{
+
+text-align:center;
+padding:20px;
+background:#000;
+
+}
+
+
+</style>
+
+</head>
+
+
+
+<body>
+
+
+
+<div class="cart">
+🛒 Cart: <span id="cart">0</span>
+</div>
+
+
+
+<header>
+
+<div>
+
+<h1 class="logo">
+🔥 FLAME-MC 🔥
+</h1>
+
+<p>
+Minecraft Network Store
+</p>
+
+<br>
+
+<button onclick="copyIP()">
+COPY IP
+</button>
+
+
+</div>
+
+</header>
+
+
+
+
+<section>
+
+
+<h1 class="title">
+Rank Shop
+</h1>
+
+
+
+<div class="shop">
+
+
+
+<div class="card">
+
+<h2>VIP</h2>
+
+<p class="price">$6.99</p>
+
+<button onclick="buy('VIP Rank','$6.99')">
+BUY
+</button>
+
+</div>
+
+
+
+
+<div class="card">
+
+<h2>MVP</h2>
+
+<p class="price">$12.99</p>
+
+<button onclick="buy('MVP Rank','$12.99')">
+BUY
+</button>
+
+</div>
+
+
+
+
+<div class="card">
+
+<h2>MVP+</h2>
+
+<p class="price">$18.99</p>
+
+<button onclick="buy('MVP+ Rank','$18.99')">
+BUY
+</button>
+
+</div>
+
+
+
+
+<div class="card">
+
+<h2>FLAME</h2>
+
+<p class="price">$23.99</p>
+
+<button onclick="buy('FLAME Rank','$23.99')">
+BUY
+</button>
+
+</div>
+
+
+
+
+<div class="card">
+
+<h2>KING</h2>
+
+<p class="price">$30.99</p>
+
+<button onclick="buy('KING Rank','$30.99')">
+BUY
+</button>
+
+</div>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+<section>
+
+
+<h1 class="title">
+Pets & Kits
+</h1>
+
+
+<div class="shop">
+
+
+
+<div class="card">
+
+<h2>Dragon Pet</h2>
+
+<p class="price">$12</p>
+
+<button onclick="buy('Dragon Pet','$12')">
+BUY
+</button>
+
+</div>
+
+
+
+
+<div class="card">
+
+<h2>FLAME Kit</h2>
+
+<p class="price">$7</p>
+
+<button onclick="buy('FLAME Kit','$7')">
+BUY
+</button>
+
+</div>
+
+
+
+
+
+
+</button>
+
+</div>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+<!-- BUY POPUP -->
+
+
+<div class="popup" id="popup">
+
+
+<div class="popup-box">
+
+
+<h2 id="item"></h2>
+<h2>Purchase Rank</h2>
+
+<label>Game Name:</label>
+<input id="username" placeholder="Minecraft Username">
+
+
+<label>Choose Server:</label>
+<select>
+<option></option>
+<option>ECONOMY</option>
+<option>SMP</option>
+<option>COMING SOON...!</option>
+</select>
+
+
+<label>Edition:</label><br>
+
+<input type="radio" name="edition">
+Java
+
+<input type="radio" name="edition">
+Bedrock
+
+
+<label>Choose Rank:</label>
+
+<select id="rank">
+<option></option>
+<option>VIP - $6.99</option>
+<option>MVP - $12.99</option>
+<option>MVP+ - $18.99</option>
+<option>FLAME - $23.99</option>
+<option>KING - $30.99</option>
+</select>
+
+
+<label>Discount Code:</label>
+
+<input placeholder="Enter code">
+
+<button>
+Apply
+</button>
+<h3 id="price"></h3>
+
+<img src="https://uploads.onecompiler.io/44unba73v/1783548914367/nyqrAC.jpg" width="250">
+
+<p>
+Scan ACLEDA QR ដើម្បីបង់ប្រាក់
+</p>
+<h3>Submit Payment</h3>
+
+<p>
+Upload your payment screenshot
+</p>
+
+<input type="file" accept="image/*">
+
+<br><br>
+
+<input 
+type="text" 
+placeholder="Transaction ID">
+
+<br><br>
+
+<button>
+Submit Payment
+</button>
+
+<br>
+Telegram: @quar1z_tozo
+<br>
+Discord: Quar1z_Tozoo
+</p>
+
+
+<br>
+
+
+<button class="buy">
+CONFIRM BUY
+</button>
+
+
+<button class="close" onclick="closeBuy()">
+CLOSE
+</button>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<footer>
+
+FLAME-CLUB
+<br>
+IP: flamemc.ink
+<br>
+PORT: 62057
+
+</footer>
+
+
+
+
+
+<script>
+
+
+let cart = 0;
+
+
+
+function buy(name,price){
+
+
+cart++;
+
+document.getElementById("cart").innerHTML = cart;
+
+
+document.getElementById("item").innerHTML = name;
+
+
+document.getElementById("price").innerHTML = price;
+
+
+document.getElementById("popup").style.display="flex";
+
+
+}
+
+
+
+function closeBuy(){
+
+
+document.getElementById("popup").style.display="none";
+
+
+}
+
+
+
+
+function copyIP(){
+
+
+navigator.clipboard.writeText("flamemc.ink:62057");
+
+
+alert("FLAME-CLUB IP Copied!");
+
+
+}
+
+
+
+</script>
+
+
+
+</body>
+</html>
